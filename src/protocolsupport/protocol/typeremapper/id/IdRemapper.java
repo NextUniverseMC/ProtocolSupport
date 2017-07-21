@@ -20,24 +20,24 @@ public class IdRemapper {
 
 	public static final IdRemappingRegistry<ArrayBasedIdRemappingTable> BLOCK = new IdRemappingRegistry<ArrayBasedIdRemappingTable>() {
 		{
-			registerRemapEntry(Material.CONCRETE, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.CONCRETE, Material.STAINED_CLAY, ProtocolVersionsHelper.BEFORE_1_12);
 			registerRemapEntry(Material.CONCRETE_POWDER, Material.WOOL, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.WHITE_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.ORANGE_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.MAGENTA_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.YELLOW_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.LIME_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.PINK_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.GRAY_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.SILVER_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.CYAN_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.PURPLE_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.BLUE_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.BROWN_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.GREEN_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.RED_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
-			registerRemapEntry(Material.BLACK_GLAZED_TERRACOTTA, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.WHITE_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 0, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.ORANGE_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 1, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.MAGENTA_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 3, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.LIGHT_BLUE_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 4, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.YELLOW_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 5, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.LIME_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 6, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.PINK_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 7, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.GRAY_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 8, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.SILVER_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 9, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.CYAN_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 10, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.PURPLE_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 11, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.BLUE_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 12, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.BROWN_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 13, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.GREEN_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 14, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.RED_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 15, ProtocolVersionsHelper.BEFORE_1_12);
+			registerRemapEntry(Material.BLACK_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 16, ProtocolVersionsHelper.BEFORE_1_12);
 			registerRemapEntry(Material.IRON_NUGGET, Material.GOLD_NUGGET, ProtocolVersionsHelper.BEFORE_1_11_1);
 			registerRemapEntry(Material.OBSERVER, Material.FURNACE, 2, ProtocolVersionsHelper.BEFORE_1_11);
 			registerRemapEntry(Material.WHITE_SHULKER_BOX, Material.FURNACE, 2, ProtocolVersionsHelper.BEFORE_1_11);
@@ -60,22 +60,22 @@ public class IdRemapper {
 			registerRemapEntry(Material.NETHER_WART_BLOCK, Material.WOOL, 14, ProtocolVersionsHelper.BEFORE_1_10);
 			registerRemapEntry(Material.RED_NETHER_BRICK, Material.NETHER_BRICK, ProtocolVersionsHelper.BEFORE_1_10);
 			registerRemapEntry(Material.MAGMA, Material.NETHERRACK, ProtocolVersionsHelper.BEFORE_1_10);
-			registerRemapEntry(Material.BONE_BLOCK, Material.BRICK, ProtocolVersionsHelper.BEFORE_1_10);
+			registerRemapEntry(Material.BONE_BLOCK, Material.WOOL, 0, ProtocolVersionsHelper.BEFORE_1_10);
 			for (int i = 0; i < MinecraftData.BLOCK_DATA_MAX; i++) {
 				int newdata = (i & 0x8) == 0x8 ? 1 : 0;
 				registerRemapEntry(Material.COMMAND_CHAIN, i, Material.COMMAND, newdata, ProtocolVersionsHelper.BEFORE_1_9);
 				registerRemapEntry(Material.COMMAND_REPEATING, i, Material.COMMAND, newdata, ProtocolVersionsHelper.BEFORE_1_9);
 				registerRemapEntry(Material.COMMAND, i, Material.COMMAND, newdata, ProtocolVersionsHelper.BEFORE_1_9);
 			}
-			registerRemapEntry(Material.CHORUS_FLOWER, Material.WOOD, ProtocolVersionsHelper.BEFORE_1_9);
-			registerRemapEntry(Material.CHORUS_PLANT, Material.WOOD, ProtocolVersionsHelper.BEFORE_1_9);
+			registerRemapEntry(Material.CHORUS_FLOWER, Material.STAINED_CLAY, 2, ProtocolVersionsHelper.BEFORE_1_9);
+			registerRemapEntry(Material.CHORUS_PLANT, Material.STAINED_CLAY, 11, ProtocolVersionsHelper.BEFORE_1_9);
 			registerRemapEntry(Material.END_GATEWAY, Material.ENDER_PORTAL, ProtocolVersionsHelper.BEFORE_1_9);
 			registerRemapEntry(Material.END_ROD, Material.GLOWSTONE, 0, ProtocolVersionsHelper.BEFORE_1_9);
-			registerRemapEntry(Material.PURPUR_PILLAR, Material.STONE, 0, ProtocolVersionsHelper.BEFORE_1_9);
+			registerRemapEntry(Material.PURPUR_PILLAR, Material.WOOL, 10, ProtocolVersionsHelper.BEFORE_1_9);
 			registerRemapEntry(Material.END_BRICKS, Material.ENDER_STONE, ProtocolVersionsHelper.BEFORE_1_9);
 			registerRemapEntry(Material.FROSTED_ICE, Material.ICE, ProtocolVersionsHelper.BEFORE_1_9);
 			registerRemapEntry(Material.GRASS_PATH, Material.SOIL, ProtocolVersionsHelper.BEFORE_1_9);
-			registerRemapEntry(Material.PURPUR_BLOCK, Material.STONE, ProtocolVersionsHelper.BEFORE_1_9);
+			registerRemapEntry(Material.PURPUR_BLOCK, Material.WOOL, 10, ProtocolVersionsHelper.BEFORE_1_9);
 			registerRemapEntry(Material.PURPUR_STAIRS, Material.COBBLESTONE_STAIRS, ProtocolVersionsHelper.BEFORE_1_9);
 			registerRemapEntry(Material.PURPUR_SLAB, Material.STEP, ProtocolVersionsHelper.BEFORE_1_9);
 			registerRemapEntry(Material.PURPUR_DOUBLE_SLAB, Material.DOUBLE_STEP, ProtocolVersionsHelper.BEFORE_1_9);
