@@ -1,3 +1,5 @@
+### The NextUniverse build of this plugin is deprecated in favour of [ProtocolSupportStuff](https://www.spigotmc.org/resources/protocolsupportstuff.44527/)
+
 ProtocolSupport
 ===============
 
