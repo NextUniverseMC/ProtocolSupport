@@ -20,7 +20,8 @@ public class CustomPayload extends MiddleCustomPayload {
 	private final ByteBuf newdata = Unpooled.buffer();
 
 	@Override
-	public void readFromClientData(ByteBuf clientdata, ProtocolVersion version) {
+	public void readFromClientData(ByteBuf clientdata) {
+		ProtocolVersion version = connection.getVersion();
 		tag = StringSerializer.readString(clientdata, version, 20);
 		if (clientdata.readableBytes() > Short.MAX_VALUE) {
 			throw new DecoderException("Payload may not be larger than 32767 bytes");
@@ -30,8 +31,10 @@ public class CustomPayload extends MiddleCustomPayload {
 		if (tag.equals("MC|ItemName")) {
 			ArraySerializer.writeByteArray(newdata, ProtocolVersionsHelper.LATEST_PC, olddata);
 		} else if (tag.equals("MC|BSign") || tag.equals("MC|BEdit")) {
-			ItemStackWrapper book = ItemStackSerializer.readItemStack(olddata, version, cache.getLocale());
-			book.setType(Material.BOOK_AND_QUILL);
+			ItemStackWrapper book = ItemStackSerializer.readItemStack(olddata, version, cache.getLocale(), true);
+			if (!book.isNull()) {
+				book.setType(Material.BOOK_AND_QUILL);
+			}
 			ItemStackSerializer.writeItemStack(newdata, ProtocolVersionsHelper.LATEST_PC, cache.getLocale(), book, false);
 		} else if (tag.equals("MC|AdvCdm")) {
 			tag = "MC|AdvCmd";

@@ -1,5 +1,6 @@
 package protocolsupport.api;
 
+import java.math.BigInteger;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,16 @@ import protocolsupport.api.remapper.ItemRemapperControl;
 import protocolsupport.protocol.storage.ProtocolStorage;
 
 public class ProtocolSupportAPI {
+
+	private static final BigInteger apiversion = BigInteger.valueOf(2);
+	/**
+	 * Returns ProtocolSupport API version
+	 * This number is incremented every time API changes (behavior change, method/field added/removed)
+	 * @return API version
+	 */
+	public static BigInteger getAPIVersion() {
+		return apiversion;
+	}
 
 	/**
 	 * Returns player protocol version

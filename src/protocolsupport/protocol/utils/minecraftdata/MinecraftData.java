@@ -1,7 +1,6 @@
 package protocolsupport.protocol.utils.minecraftdata;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -10,17 +9,15 @@ import protocolsupport.utils.Utils;
 
 public class MinecraftData {
 
-	public static final String NAMESPACE_PREFIX = "minecraft:";
-
 	public static String addNamespacePrefix(String val) {
-		return NAMESPACE_PREFIX + val;
+		return "minecraft:" + val;
 	}
 
 	public static Iterable<JsonElement> iterateJsonArrayResource(String name) {
-		return new JsonParser().parse(new InputStreamReader(getResource(name))).getAsJsonArray();
+		return new JsonParser().parse(getResource(name)).getAsJsonArray();
 	}
 
-	public static InputStream getResource(String name) {
+	public static BufferedReader getResource(String name) {
 		return Utils.getResource("data/" + name);
 	}
 
@@ -39,18 +36,6 @@ public class MinecraftData {
 
 	public static int getBlockDataFromState(int blockstate) {
 		return blockstate & 0xF;
-	}
-
-	public static int getItemStateFromIdAndData(int id, int data) {
-		return (id << 16) | data;
-	}
-
-	public static int getItemIdFromState(int itemstate) {
-		return itemstate >>> 16;
-	}
-
-	public static int getItemDataFromState(int itemstate) {
-		return itemstate & 0xFFFF;
 	}
 
 }

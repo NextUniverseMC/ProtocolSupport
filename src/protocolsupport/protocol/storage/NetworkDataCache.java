@@ -16,18 +16,17 @@ import protocolsupport.utils.Utils;
 
 public class NetworkDataCache {
 
-	private static final double acceptableError = 0.001;
+	private static final double acceptableError = 0.1;
 
 	private double x;
 	private double y;
 	private double z;
 	private int teleportConfirmId;
 
-	public boolean isTeleportConfirmNeeded() {
-		return teleportConfirmId != -1;
-	}
-
 	public int tryTeleportConfirm(double x, double y, double z) {
+		if (teleportConfirmId == -1) {
+			return -1;
+		}
 		if (
 			(Math.abs(this.x - x) < acceptableError) &&
 			(Math.abs(this.y - y) < acceptableError) &&
@@ -38,14 +37,6 @@ public class NetworkDataCache {
 			return r;
 		}
 		return -1;
-	}
-
-	public boolean tryTeleportConfirm(int teleportId) {
-		if (teleportId == teleportConfirmId) {
-			teleportConfirmId = -1;
-			return true;
-		}
-		return false;
 	}
 
 	public void setTeleportLocation(double x, double y, double z, int teleportConfirmId) {

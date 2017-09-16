@@ -9,11 +9,9 @@ import org.bukkit.Bukkit;
 
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
-import protocolsupport.api.ProtocolVersion;
 import protocolsupport.api.events.ConnectionHandshakeEvent;
 import protocolsupport.protocol.ConnectionImpl;
 import protocolsupport.protocol.storage.ThrottleTracker;
-import protocolsupport.protocol.utils.ProtocolVersionsHelper;
 import protocolsupport.protocol.utils.spoofedata.SpoofedData;
 import protocolsupport.protocol.utils.spoofedata.SpoofedDataParser;
 import protocolsupport.zplatform.ServerPlatform;
@@ -27,8 +25,8 @@ public abstract class AbstractHandshakeListener {
 		this.networkManager = networkmanager;
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
-	public void handleSetProtocol(int clientVersion, NetworkState nextState, String hostname, int port) {
+	@SuppressWarnings("unchecked")
+	public void handleSetProtocol(NetworkState nextState, String hostname, int port) {
 		switch (nextState) {
 			case LOGIN: {
 				networkManager.setProtocol(NetworkState.LOGIN);
@@ -50,9 +48,9 @@ public abstract class AbstractHandshakeListener {
 				} catch (Throwable t) {
 					Bukkit.getLogger().log(Level.WARNING, "Failed to check connection throttle", t);
 				}
-				//check client version (may be not latest if connection was from snapshot)
-				ProtocolVersion clientversion = ProtocolVersion.fromId(clientVersion);
-				if (clientversion != ProtocolVersionsHelper.LATEST_PC) {
+				ConnectionImpl connection = ConnectionImpl.getFromChannel(networkManager.getChannel());
+				//version check
+				if (!connection.getVersion().isSupported()) {
 					String message = MessageFormat.format(ServerPlatform.get().getMiscUtils().getOutdatedServerMessage().replace("'", "''"), ServerPlatform.get().getMiscUtils().getVersionName());
 					this.networkManager.sendPacket(ServerPlatform.get().getPacketFactory().createLoginDisconnectPacket(message), new GenericFutureListener<Future<? super Void>>() {
 						@Override
@@ -62,7 +60,6 @@ public abstract class AbstractHandshakeListener {
 					});
 					break;
 				}
-				ConnectionImpl connection = ConnectionImpl.getFromChannel(networkManager.getChannel());
 				//bungee spoofed data handling
 				if (ServerPlatform.get().getMiscUtils().isProxyEnabled()) {
 					SpoofedData sdata = SpoofedDataParser.tryParse(hostname);

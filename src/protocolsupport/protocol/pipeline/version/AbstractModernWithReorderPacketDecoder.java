@@ -12,7 +12,7 @@ import protocolsupport.protocol.storage.NetworkDataCache;
 import protocolsupport.protocol.typeremapper.legacy.LegacyAnimatePacketReorderer;
 import protocolsupport.zplatform.ServerPlatform;
 
-public class AbstractModernWithReorderPacketDecoder extends AbstractPacketDecoder  {
+public class AbstractModernWithReorderPacketDecoder extends AbstractPacketDecoder {
 
 	public AbstractModernWithReorderPacketDecoder(Connection connection, NetworkDataCache sharedstorage) {
 		super(connection, sharedstorage);
@@ -28,7 +28,7 @@ public class AbstractModernWithReorderPacketDecoder extends AbstractPacketDecode
 		ServerBoundMiddlePacket packetTransformer = null;
 		try {
 			packetTransformer = registry.getTransformer(ServerPlatform.get().getMiscUtils().getNetworkStateFromChannel(ctx.channel()), VarNumberSerializer.readVarInt(input));
-			packetTransformer.readFromClientData(input, connection.getVersion());
+			packetTransformer.readFromClientData(input);
 			if (input.isReadable()) {
 				throw new DecoderException("Did not read all data from packet " + packetTransformer.getClass().getName() + ", bytes left: " + input.readableBytes());
 			}

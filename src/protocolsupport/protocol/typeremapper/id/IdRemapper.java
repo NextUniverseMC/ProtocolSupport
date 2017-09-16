@@ -6,11 +6,11 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.bukkit.Material;
 
 import protocolsupport.api.ProtocolVersion;
-import protocolsupport.protocol.typeremapper.id.RemappingRegistry.EnumRemappingRegistry;
-import protocolsupport.protocol.typeremapper.id.RemappingRegistry.IdRemappingRegistry;
-import protocolsupport.protocol.typeremapper.id.RemappingTable.ArrayBasedIdRemappingTable;
-import protocolsupport.protocol.typeremapper.id.RemappingTable.EnumRemappingTable;
-import protocolsupport.protocol.typeremapper.id.RemappingTable.HashMapBasedIdRemappingTable;
+import protocolsupport.protocol.typeremapper.utils.RemappingRegistry.EnumRemappingRegistry;
+import protocolsupport.protocol.typeremapper.utils.RemappingRegistry.IdRemappingRegistry;
+import protocolsupport.protocol.typeremapper.utils.RemappingTable.ArrayBasedIdRemappingTable;
+import protocolsupport.protocol.typeremapper.utils.RemappingTable.EnumRemappingTable;
+import protocolsupport.protocol.typeremapper.utils.RemappingTable.HashMapBasedIdRemappingTable;
 import protocolsupport.protocol.utils.ProtocolVersionsHelper;
 import protocolsupport.protocol.utils.minecraftdata.MinecraftData;
 import protocolsupport.protocol.utils.types.NetworkEntityType;
@@ -18,9 +18,19 @@ import protocolsupport.protocol.utils.types.WindowType;
 
 public class IdRemapper {
 
-	public static final IdRemappingRegistry<ArrayBasedIdRemappingTable> BLOCK = new IdRemappingRegistry<ArrayBasedIdRemappingTable>() {
+	public static final BlockIdDataRemappingRegistry BLOCK = new BlockIdDataRemappingRegistry();
+
+	public static class BlockIdDataRemappingRegistry extends IdRemappingRegistry<ArrayBasedIdRemappingTable> {
 		{
+<<<<<<< HEAD
 			registerRemapEntry(Material.CONCRETE, Material.STAINED_CLAY, ProtocolVersionsHelper.BEFORE_1_12);
+=======
+			applyDefaultRemaps();
+		}
+		public void applyDefaultRemaps() {
+			remappings.clear();
+			registerRemapEntry(Material.CONCRETE, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
+>>>>>>> pr/2
 			registerRemapEntry(Material.CONCRETE_POWDER, Material.WOOL, ProtocolVersionsHelper.BEFORE_1_12);
 			registerRemapEntry(Material.WHITE_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 0, ProtocolVersionsHelper.BEFORE_1_12);
 			registerRemapEntry(Material.ORANGE_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 1, ProtocolVersionsHelper.BEFORE_1_12);
@@ -155,7 +165,7 @@ public class IdRemapper {
 		protected ArrayBasedIdRemappingTable createTable() {
 			return new ArrayBasedIdRemappingTable(MinecraftData.BLOCK_ID_MAX * MinecraftData.BLOCK_DATA_MAX);
 		}
-	};
+	}
 
 	public static final EnumRemappingRegistry<NetworkEntityType, EnumRemappingTable<NetworkEntityType>> ENTITY = new EnumRemappingRegistry<NetworkEntityType, EnumRemappingTable<NetworkEntityType>>() {
 		final class Mapping {

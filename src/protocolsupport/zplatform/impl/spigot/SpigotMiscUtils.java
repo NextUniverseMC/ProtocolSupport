@@ -38,6 +38,8 @@ import protocolsupport.zplatform.PlatformUtils;
 import protocolsupport.zplatform.impl.spigot.itemstack.SpigotNBTTagCompoundWrapper;
 import protocolsupport.zplatform.impl.spigot.network.SpigotChannelHandlers;
 import protocolsupport.zplatform.impl.spigot.network.SpigotNetworkManagerWrapper;
+import protocolsupport.zplatform.impl.spigot.network.pipeline.SpigotPacketCompressor;
+import protocolsupport.zplatform.impl.spigot.network.pipeline.SpigotPacketDecompressor;
 import protocolsupport.zplatform.impl.spigot.network.pipeline.SpigotWrappedPrepender;
 import protocolsupport.zplatform.impl.spigot.network.pipeline.SpigotWrappedSplitter;
 import protocolsupport.zplatform.itemstack.NBTTagCompoundWrapper;
@@ -118,6 +120,11 @@ public class SpigotMiscUtils implements PlatformUtils {
 	}
 
 	@Override
+	public boolean isProxyPreventionEnabled() {
+		return getServer().ac();
+	}
+
+	@Override
 	public boolean isDebugging() {
 		return getServer().isDebugging();
 	}
@@ -186,13 +193,10 @@ public class SpigotMiscUtils implements PlatformUtils {
 	}
 
 	@Override
-	public String getSplitterHandlerName() {
-		return SpigotChannelHandlers.SPLITTER;
-	}
-
-	@Override
-	public String getPrependerHandlerName() {
-		return SpigotChannelHandlers.PREPENDER;
+	public void enableCompression(ChannelPipeline pipeline, int compressionThreshold) {
+		pipeline
+		.addAfter(SpigotChannelHandlers.SPLITTER, "decompress", new SpigotPacketDecompressor(compressionThreshold))
+		.addAfter(SpigotChannelHandlers.PREPENDER, "compress", new SpigotPacketCompressor(compressionThreshold));
 	}
 
 	@Override

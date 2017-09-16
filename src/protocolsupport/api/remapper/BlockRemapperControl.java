@@ -5,10 +5,17 @@ import org.bukkit.Material;
 
 import protocolsupport.api.ProtocolVersion;
 import protocolsupport.protocol.typeremapper.id.IdRemapper;
-import protocolsupport.protocol.typeremapper.id.RemappingTable.ArrayBasedIdRemappingTable;
+import protocolsupport.protocol.typeremapper.utils.RemappingTable.ArrayBasedIdRemappingTable;
 import protocolsupport.protocol.utils.minecraftdata.MinecraftData;
 
 public class BlockRemapperControl {
+
+	/**
+	 * Resets all block remaps to default ones
+	 */
+	public static void resetToDefault() {
+		IdRemapper.BLOCK.applyDefaultRemaps();
+	}
 
 	private final ArrayBasedIdRemappingTable table;
 

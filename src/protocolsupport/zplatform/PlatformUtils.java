@@ -32,6 +32,8 @@ public interface PlatformUtils {
 
 	public boolean isProxyEnabled();
 
+	public boolean isProxyPreventionEnabled();
+
 	public boolean isDebugging();
 
 	public void enableDebug();
@@ -56,9 +58,7 @@ public interface PlatformUtils {
 
 	public String getReadTimeoutHandlerName();
 
-	public String getSplitterHandlerName();
-
-	public String getPrependerHandlerName();
+	public void enableCompression(ChannelPipeline pipeline, int compressionThreshold);
 
 	public void setFraming(ChannelPipeline pipeline, IPacketSplitter splitter, IPacketPrepender prepender);
 
