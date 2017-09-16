@@ -22,15 +22,11 @@ public class IdRemapper {
 
 	public static class BlockIdDataRemappingRegistry extends IdRemappingRegistry<ArrayBasedIdRemappingTable> {
 		{
-<<<<<<< HEAD
-			registerRemapEntry(Material.CONCRETE, Material.STAINED_CLAY, ProtocolVersionsHelper.BEFORE_1_12);
-=======
 			applyDefaultRemaps();
 		}
 		public void applyDefaultRemaps() {
 			remappings.clear();
-			registerRemapEntry(Material.CONCRETE, Material.BRICK, 0, ProtocolVersionsHelper.BEFORE_1_12);
->>>>>>> pr/2
+			registerRemapEntry(Material.CONCRETE, Material.STAINED_CLAY, ProtocolVersionsHelper.BEFORE_1_12);
 			registerRemapEntry(Material.CONCRETE_POWDER, Material.WOOL, ProtocolVersionsHelper.BEFORE_1_12);
 			registerRemapEntry(Material.WHITE_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 0, ProtocolVersionsHelper.BEFORE_1_12);
 			registerRemapEntry(Material.ORANGE_GLAZED_TERRACOTTA, Material.STAINED_CLAY, 1, ProtocolVersionsHelper.BEFORE_1_12);
